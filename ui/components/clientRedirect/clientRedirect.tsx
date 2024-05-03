@@ -16,8 +16,8 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 export function ClientRedirect(project) {
     console.log("this is banana", project);
-    
-    const { user, public_user } = useAuth();
+
+    const { accessToken, user, public_user } = useAuth();
     console.log("this is banana ", public_user);
 
     const generateRandomString = (length) => {
@@ -26,11 +26,11 @@ export function ClientRedirect(project) {
         return Array.from(randomBytes, byte => ('0' + (byte & 0xFF).toString(16)).slice(-2)).join('');
     };
 
-    const get_user =()=>{
+    const get_user = () => {
         // get user from supabase
     };
 
-    const generate_jwt_token =()=>{
+    const generate_jwt_token = () => {
         // decoded user_info into jwt
     };
 
