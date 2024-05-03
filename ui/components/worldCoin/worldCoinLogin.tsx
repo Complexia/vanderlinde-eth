@@ -12,7 +12,8 @@ export function WorldCoinLogin() {
         console.log("Verify", event);
     };
     return (
-        <div className="hero min-h-screen bg-base-200">
+        <button className="btn btn-info">
+            {/* <div> */}
             <IDKitWidget
                 app_id="app_2563d84c8973c12b4958f5df691a4161" // obtained from the Developer Portal
                 action="Identifications" // this is your action id from the Developer Portal
@@ -22,7 +23,8 @@ export function WorldCoinLogin() {
             >
                 {({ open }) => <button onClick={open}>Verify with World ID</button>}
             </IDKitWidget>
-        </div>
+            {/* </div> */}
+        </button>
     )
 }
 
