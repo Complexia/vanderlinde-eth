@@ -26,36 +26,36 @@ const AlchemyComponent = () => {
     });
 
 
-    // useEffect(() => {
-    //     const saveWalletToSupabase = async () => {
+    useEffect(() => {
+        const saveWalletToSupabase = async () => {
 
-    //         const supabase = createClient();
+            const supabase = createClient();
 
-    //         try {
+            try {
 
-    //             const { data: resp, error } = await supabase
-    //                 .from('public_users')
-    //                 .update({ "wallet_address": client?.account?.address })
-
-
-
-    //             if (error) {
-    //                 // Handle error
-    //                 console.error('Error updating wallet:', error.message);
-    //                 return;
-    //             }
+                const { data: resp, error } = await supabase
+                    .from('public_users')
+                    .update({ "wallet_address": client?.account?.address }).eq('id', user.id);
 
 
 
+                if (error) {
+                    // Handle error
+                    console.error('Error updating wallet:', error.message);
+                    return;
+                }
 
 
-    //         } catch (error) {
-    //             console.error("Error..:", error);
-    //         }
-    //     }
-    //     saveWalletToSupabase();
 
-    // }, [client]);
+
+
+            } catch (error) {
+                console.error("Error..:", error);
+            }
+        }
+        saveWalletToSupabase();
+
+    }, [client]);
 
     // @ts-ignore
     const { user, public_user } = useAuth();
