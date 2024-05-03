@@ -19,7 +19,7 @@ const OnrampExample: React.FC = () => {
   const [isOverlayVisible, setIsOverlayVisible] = useState(false);
   
   // @ts-ignore
-  const { user } = useAuth();
+  const { user, public_user } = useAuth();
   const { client } = useSmartAccountClient({
     type: "MultiOwnerModularAccount",
   });
