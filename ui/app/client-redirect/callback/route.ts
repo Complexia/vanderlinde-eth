@@ -3,9 +3,6 @@ import { createClient } from "@/utils/supabase/server";
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
-  // @ts-ignore
-  const { user, public_user } = useAuth();
-  console.log("this is banana ",public_user);
   const node_crypto = require('crypto');
   const jwt = require('jsonwebtoken');
   // The `/auth/callback` route is required for the server-side auth flow implemented
@@ -23,13 +20,13 @@ export async function GET(request: Request) {
   if (client_id) {
     const supabase = createClient();
     const { data: project, error } = await supabase.from('project').select('*').eq('client_id', client_id).limit(1);
+   
     if (error) {
       console.error('Error inserting data:', error);
       alert('Failed to create project');
     } else {
-      const { data: user_info, error } = await supabase.from('public_users').select('*').eq('id', project[0].user_id).limit(1);
+      console.log("this is project",project);
       info.project = project;
-      info.public_users = user_info;
       let payload = JSON.stringify(info);
       token = jwt.sign(payload, project[0].client_secret);
       console.log('This is JWT:', token);
