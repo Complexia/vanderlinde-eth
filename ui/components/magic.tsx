@@ -52,21 +52,26 @@ const Magic = () => {
 
     return (
         <div className="flex flex-col items-center justify-center space-y-6">
-            <div className="flex flex-row items-center justify-center space-x-6">
-                <div className="card  bg-base-300 shadow-xl">
+            <div className="flex flex-row flex-grow items-center justify-center space-x-6">
+                <div className="card  bg-base-300 shadow-xl h-full min-h-36">
                     <div className="card-body">
                         <SupabaseComponent />
                     </div>
                 </div>
 
-                <div className="card  bg-base-300 shadow-xl">
+                {user && <div className="card  bg-base-300 shadow-xl h-full min-h-36" >
                     <div className="card-body">
+
                         <AlchemyComponent />
+
+
+
                     </div>
-                </div>
+                </div>}
+
             </div>
 
-            <button className="btn w-full" onClick={() => signOut()}>Sign out</button>
+            <button className="btn btn-primary w-full" onClick={() => signOut()}>Sign out</button>
 
         </div>
     );

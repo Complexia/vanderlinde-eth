@@ -5,6 +5,8 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import AuthProvider from "@/components/providers/authProvider";
 import { AlchemyProviders } from "@/components/providers/alchemyProvider";
+import Sidebar from "@/components/sidebar";
+import Navbar from "@/components/navbar";
 
 
 const defaultUrl = process.env.VERCEL_URL
@@ -50,6 +52,8 @@ export default async function RootLayout({
 
         <AuthProvider accessToken={accessToken} user={user} public_user={data}>
           <AlchemyProviders>
+            <Navbar user={user}/>
+
 
             <main className="min-h-screen flex flex-col items-center justify-center">
               {children}

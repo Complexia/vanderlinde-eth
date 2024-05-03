@@ -46,7 +46,10 @@ const AlchemyComponent = () => {
                 user && (isAuthenticatingUser || isLoadingAccount) ? (
                     <div className="text-[18px] font-semibold">Check your email!</div>
                 ) : (
-                    <button className="btn" onClick={() => authenticate({ "type": "email", "email": user.email })}>Create Smart Wallet</button>
+                    <div className="flex flex-col space-y-2">
+                        <h1>No wallet currently connected</h1>
+                        <button className="btn btn-primary" onClick={() => authenticate({ "type": "email", "email": user.email })}>Create Smart Wallet</button>
+                    </div>
                 )
             )}
         </div>
