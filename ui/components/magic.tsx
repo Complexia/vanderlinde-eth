@@ -24,7 +24,7 @@ const Magic = () => {
 
     // @ts-ignore
     const { user, public_user } = useAuth();
-    
+
 
     const { client } = useSmartAccountClient({
         type: "MultiOwnerModularAccount",
@@ -62,8 +62,8 @@ const Magic = () => {
                 </div>}
 
             </div>
+            {user && <button className="btn btn-primary w-full" onClick={() => signOut()}>Sign out</button>}
 
-            <button className="btn btn-primary w-full" onClick={() => signOut()}>Sign out</button>
 
         </div>
     );

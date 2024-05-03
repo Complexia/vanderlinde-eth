@@ -6,17 +6,12 @@ import { useAuth } from "./providers/authProvider";
 import { createClient } from "@/utils/supabase/client";
 import { useAccount, useAuthenticate, useSmartAccountClient } from "@alchemy/aa-alchemy/react";
 import { ProfileCard } from "./ProfileCard";
-import { useLogout } from "@alchemy/aa-alchemy/react";
+
 
 
 
 
 const AlchemyComponent = () => {
-
-    // @ts-ignore
-    const { user, public_user } = useAuth();
-
-
 
     const { authenticate, isPending: isAuthenticatingUser } = useAuthenticate();
     const { isLoadingAccount } = useAccount({
@@ -31,8 +26,40 @@ const AlchemyComponent = () => {
     });
 
 
+    // useEffect(() => {
+    //     const saveWalletToSupabase = async () => {
+
+    //         const supabase = createClient();
+
+    //         try {
+
+    //             const { data: resp, error } = await supabase
+    //                 .from('public_users')
+    //                 .update({ "wallet_address": client?.account?.address })
 
 
+
+    //             if (error) {
+    //                 // Handle error
+    //                 console.error('Error updating wallet:', error.message);
+    //                 return;
+    //             }
+
+
+
+
+
+    //         } catch (error) {
+    //             console.error("Error..:", error);
+    //         }
+    //     }
+    //     saveWalletToSupabase();
+
+    // }, [client]);
+
+    // @ts-ignore
+    const { user, public_user } = useAuth();
+    console.log(user.email)
 
 
 
@@ -43,15 +70,20 @@ const AlchemyComponent = () => {
                     <ProfileCard />
                 </div>
             ) : (
-                user && (isAuthenticatingUser || isLoadingAccount) ? (
-                    <div className="text-[18px] font-semibold">Check your email!</div>
-                ) : (
+
+                isAuthenticatingUser ? (
+                    <div className="text-[18px] font-semibold">Check your email!</div>) : (
                     <div className="flex flex-col space-y-2">
                         <h1>No wallet currently connected</h1>
-                        <button className="btn btn-primary" onClick={() => authenticate({ "type": "email", "email": user.email })}>Create Smart Wallet</button>
+                        <button className="btn btn-primary" onClick={() => authenticate({ "type": "email", "email": user.email })}>
+                            {public_user?.wallet_address ? (<span>Retrieve Smart Wallet</span>) : (<span>Create Smart Wallet</span>)}
+                        </button>
                     </div>
                 )
+
             )}
+            
+
         </div>
 
     );
