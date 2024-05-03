@@ -51,7 +51,12 @@
     "unist-util-visit": "^5.0.0",
     "uuidv4": "^6.2.13",
     "vaul": "^0.9.0",
-    "zod": "^3.22.4"
+    "zod": "^3.22.4",
+    "@alchemy/aa-accounts": "^3.8.2-alpha.1",
+    "@alchemy/aa-alchemy": "^3.9.0-alpha.3",
+    "@alchemy/aa-core": "^3.8.2-alpha.1",
+    "@tanstack/react-query": "5.28.9",
+    "viem": "2.8.6"
   },
   "devDependencies": {
     "@types/node": "20.11.5",

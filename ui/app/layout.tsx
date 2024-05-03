@@ -4,6 +4,7 @@ import "./globals.css";
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import AuthProvider from "@/components/providers/authProvider";
+import { AlchemyProviders } from "@/components/providers/alchemyProvider";
 
 
 const defaultUrl = process.env.VERCEL_URL
@@ -43,19 +44,22 @@ export default async function RootLayout({
 
 
   return (
-    <html lang="en" data-theme={data? data.theme: "synthwave"} className={GeistSans.className}>
+    <html lang="en" data-theme={data ? data.theme : "synthwave"} className={GeistSans.className}>
       <body className="">
-        
-          
-            <AuthProvider accessToken={accessToken} user={user} public_user={data}>
 
-              <main className="min-h-screen flex flex-col items-center justify-center">
-                {children}
-              </main>
 
-            </AuthProvider>
-          
-        
+        <AuthProvider accessToken={accessToken} user={user} public_user={data}>
+          <AlchemyProviders>
+
+            <main className="min-h-screen flex flex-col items-center justify-center">
+              {children}
+            </main>
+          </AlchemyProviders>
+
+        </AuthProvider>
+
+
+
 
       </body>
     </html>
