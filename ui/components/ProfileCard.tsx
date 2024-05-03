@@ -1,6 +1,7 @@
 "use client";
 
 import { useSmartAccountClient, useUser } from "@alchemy/aa-alchemy/react";
+import OnrampExample from "./unlimit/onramp";
 // import { SendUOButton } from "./SendUOButton";
 
 export const ProfileCard = () => {
@@ -28,6 +29,7 @@ export const ProfileCard = () => {
             </div>
           </div>
         </div>
+        <OnrampExample />
         {/* <SendUOButton /> */}
       </div>
     </div>

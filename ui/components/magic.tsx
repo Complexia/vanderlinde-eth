@@ -10,6 +10,7 @@ import { useLogout } from "@alchemy/aa-alchemy/react";
 import SupabaseComponent from "./supabaseComponent";
 import AlchemyComponent from "./alchemyComponent";
 import WorldcoinComponent from "./worldcoinComponent";
+import OnrampExample from "./unlimit/onramp";
 
 
 
@@ -71,6 +72,7 @@ const Magic = () => {
                 </div>}
 
             </div>
+            
             {user && <button className="btn btn-primary w-full" onClick={() => signOut()}>Sign out</button>}
 
 

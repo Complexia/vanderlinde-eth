@@ -9,6 +9,8 @@
     "@alchemy/aa-accounts": "^3.8.2-alpha.1",
     "@alchemy/aa-alchemy": "^3.9.0-alpha.3",
     "@alchemy/aa-core": "^3.8.2-alpha.1",
+    "@dynamic-labs/sdk-react-core": "^1.4.11",
+    "@gatefi/js-sdk": "^0.18.0",
     "@mdxeditor/editor": "^2.19.0",
     "@radix-ui/react-icons": "^1.3.0",
     "@radix-ui/react-menubar": "^1.0.4",
