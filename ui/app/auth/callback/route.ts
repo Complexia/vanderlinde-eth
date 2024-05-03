@@ -19,8 +19,8 @@ export async function GET(request: Request) {
   const { data: user } = await supabase.auth.getUser();
   const { data: public_user } = await supabase.from('public_users').select('first_time_login').eq('id', user?.user?.id).single()
   
-  if (public_user?.first_time_login) {
-    return NextResponse.redirect(`${origin}/profile`);
-  }
-  return NextResponse.redirect(`${origin}/gallery`);
+  // if (public_user?.first_time_login) {
+  //   return NextResponse.redirect(`${origin}/profile`);
+  // }
+  return NextResponse.redirect(`${origin}`);
 }

@@ -5,6 +5,8 @@ import { createClient } from "@/utils/supabase/server";
 import Header from "@/components/Header";
 import { Button } from "@/registry/new-york/ui/button";
 import Link from "next/link";
+import { LoginButtonGoogle } from "@/components/auth/loginWithGoogle";
+import Magic from "@/components/magic";
 
 
 export default async function Index() {
@@ -12,7 +14,8 @@ export default async function Index() {
 
   return (
     <div>
-      Hello Bob
+      <Magic />
+      
     </div>
   );
 }
