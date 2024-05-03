@@ -6,6 +6,9 @@ import { useAuth } from "./providers/authProvider";
 import { createClient } from "@/utils/supabase/client";
 import { useAccount, useAuthenticate, useSmartAccountClient } from "@alchemy/aa-alchemy/react";
 import { ProfileCard } from "./ProfileCard";
+import { useLogout } from "@alchemy/aa-alchemy/react";
+import SupabaseComponent from "./supabaseComponent";
+import AlchemyComponent from "./alchemyComponent";
 
 
 
@@ -15,6 +18,7 @@ const Magic = () => {
     const signOut = async () => {
         const supabase = createClient();
         await supabase.auth.signOut();
+        logout();
 
     };
 
@@ -24,35 +28,45 @@ const Magic = () => {
     const { isLoadingAccount } = useAccount({
         type: "MultiOwnerModularAccount",
         skipCreate: true,
-      });
+    });
 
     // create AA wallet here if user is true
 
     const { client } = useSmartAccountClient({
         type: "MultiOwnerModularAccount",
-      });
+    });
 
-      console.log(client)
+    console.log(client)
 
-    
-    console.log(user, public_user)
+    const { logout } = useLogout({
+        onSuccess: () => {
+            // [optional] Do something after the user has been logged out
+        },
+        onError: (error) => {
+            // [optional] Do something with the error
+        },
+        // [optional] ...additional mutationArgs
+    });
+
+
+
     return (
-        <div>
-            {
-
-                user ?
-                    <div className="flex flex-col items-center justify-center space-y-4">
-                        <h1>Logged in as {user.email}</h1>
-
-                        <ProfileCard />
-                        
-                        <button className="btn" onClick={() => authenticate({"type": "email", "email": user.email}) }>Create Smart Wallet</button>
-                        <button className="btn" >Sign out</button>
+        <div className="flex flex-col items-center justify-center space-y-6">
+            <div className="flex flex-row items-center justify-center space-x-6">
+                <div className="card  bg-base-300 shadow-xl">
+                    <div className="card-body">
+                        <SupabaseComponent />
                     </div>
+                </div>
 
-                    :
+                <div className="card  bg-base-300 shadow-xl">
+                    <div className="card-body">
+                        <AlchemyComponent />
+                    </div>
+                </div>
+            </div>
 
-                    <LoginButtonGoogle />}
+            <button className="btn w-full" onClick={() => signOut()}>Sign out</button>
 
         </div>
     );
