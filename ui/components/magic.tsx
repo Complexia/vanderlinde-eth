@@ -24,13 +24,7 @@ const Magic = () => {
 
     // @ts-ignore
     const { user, public_user } = useAuth();
-    const { authenticate, isPending: isAuthenticatingUser } = useAuthenticate();
-    const { isLoadingAccount } = useAccount({
-        type: "MultiOwnerModularAccount",
-        skipCreate: true,
-    });
-
-    // create AA wallet here if user is true
+    
 
     const { client } = useSmartAccountClient({
         type: "MultiOwnerModularAccount",
@@ -63,8 +57,6 @@ const Magic = () => {
                     <div className="card-body">
 
                         <AlchemyComponent />
-
-
 
                     </div>
                 </div>}

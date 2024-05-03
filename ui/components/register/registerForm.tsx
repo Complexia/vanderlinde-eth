@@ -70,7 +70,7 @@ export function RegisterForm(user_id) {
                             <label className="label">
                                 <span className="label-text">Descriptions</span>
                             </label>
-                            <input type="descriptions" placeholder="Let's describe your project" className="textarea textarea-bordered h-24 input input-bordered" required onChange={handleDescriptionChange} />
+                            <input type="descriptions" placeholder="Let's describe your project" className="textarea textarea-bordered h-24 input " required onChange={handleDescriptionChange} />
                             <label className="label">
                                 <a href="#" className="label-text-alt link link-hover">Banana?</a>
                             </label>
