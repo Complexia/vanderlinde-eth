@@ -40,7 +40,6 @@ export function RegisterForm(user_id) {
                 alert('Failed to create project');
             } else {
                 console.log('Project created successfully:', data);
-                redirect(`/`);
             }
         }
     };
