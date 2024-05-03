@@ -34,6 +34,7 @@
     "embla-carousel-react": "^8.0.0",
     "geist": "^1.2.1",
     "jotai": "^2.7.2",
+    "jwt-decode": "^4.0.0",
     "lucide-react": "^0.363.0",
     "next": "latest",
     "next-mdx-remote": "^4.4.1",
