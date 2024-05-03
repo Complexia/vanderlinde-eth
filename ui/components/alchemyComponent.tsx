@@ -68,23 +68,27 @@ const AlchemyComponent = () => {
             {client ? (
                 <div className="flex flex-col items-center justify-center space-y-4">
                     <ProfileCard />
+                    {public_user?.worldcoin && <h1 className="text-primary font-bold">World ID verified! Gas is on the house</h1>}
                 </div>
             ) : (
-
                 isAuthenticatingUser ? (
-                    <div className="text-[18px] font-semibold">Check your email!</div>) : (
+                    <div className="text-[18px] font-semibold">Check your email!</div>
+                ) : (
                     <div className="flex flex-col space-y-2">
                         <h1>No wallet currently connected</h1>
                         <button className="btn btn-primary" onClick={() => authenticate({ "type": "email", "email": user.email })}>
-                            {public_user?.wallet_address ? (<span>Retrieve Smart Wallet</span>) : (<span>Create Smart Wallet</span>)}
+                            {public_user?.wallet_address ? (
+                                <span>Retrieve Smart Wallet</span>
+                            ) : (
+                                <span>Create Smart Wallet</span>
+                            )}
                         </button>
+                        
                     </div>
                 )
-
             )}
-            
-
         </div>
+
 
     );
 }

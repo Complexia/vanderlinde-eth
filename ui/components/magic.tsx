@@ -9,6 +9,7 @@ import { ProfileCard } from "./ProfileCard";
 import { useLogout } from "@alchemy/aa-alchemy/react";
 import SupabaseComponent from "./supabaseComponent";
 import AlchemyComponent from "./alchemyComponent";
+import WorldcoinComponent from "./worldcoinComponent";
 
 
 
@@ -57,6 +58,14 @@ const Magic = () => {
                     <div className="card-body">
 
                         <AlchemyComponent />
+
+                    </div>
+                </div>}
+
+                {user && !public_user.worldcoin && <div className="card  bg-base-300 shadow-xl h-full min-h-36" >
+                    <div className="card-body">
+
+                        <WorldcoinComponent />
 
                     </div>
                 </div>}
