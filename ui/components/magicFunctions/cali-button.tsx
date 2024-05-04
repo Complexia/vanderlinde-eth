@@ -9,7 +9,6 @@ import { IconSpinner } from '@/registry/new-york/ui/icons';
 import { LoginButtonGoogle } from '../auth/loginWithGoogle';
 
 
-const jwt = require('jsonwebtoken');
 
 const CaliComponent = ({ client_id, origin_url }) => {
     console.log(client_id, origin_url)
