@@ -56,7 +56,7 @@ const Navbar = ({ user }) => {
                     ) : (
                         <div className="flex justify-center items-center space-x-4">
                             <LoginButtonGoogle />
-                            <AuthButton />
+                            {/* <AuthButton /> */}
                         </div>
                     )}
 

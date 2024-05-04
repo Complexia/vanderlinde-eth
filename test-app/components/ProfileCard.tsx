@@ -12,8 +12,9 @@ export const ProfileCard = () => {
   
   const address = public_user.wallet_address?.address
   console.log(public_user.wallet_address)
-  
-
+  // use web3 retreive user balance
+  let balance = 123;
+  //
   return (
     <div className="flex flex-row rounded-lg ">
       <div className="flex flex-col gap-8">
@@ -24,6 +25,12 @@ export const ProfileCard = () => {
             <div>Account address</div>
             <div className="text-wrap rounded-lg p-3 ">
               {address}
+            </div>
+          </div>
+          <div className="flex flex-col gap-2">
+            <div>Balances</div>
+            <div className="text-wrap rounded-lg p-3 ">
+              {balance}
             </div>
           </div>
           <div className="flex flex-col gap-2">

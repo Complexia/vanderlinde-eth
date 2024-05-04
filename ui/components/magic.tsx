@@ -20,7 +20,7 @@ const Magic = () => {
 
     // @ts-ignore
     const { user, public_user } = useAuth();
-
+    console.log("this is user ",user);
 
     
 
