@@ -29,7 +29,7 @@ const SupabaseComponent = () => {
             {
 
                 user ?
-                    <div className="flex flex-col items-center justify-center space-y-4">
+                    <div className="flex flex-col space-y-4">
                         <h1>Logged in as {user.email}</h1>
 
                     </div>

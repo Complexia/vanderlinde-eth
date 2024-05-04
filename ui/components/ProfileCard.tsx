@@ -2,13 +2,17 @@
 
 import { useSmartAccountClient, useUser } from "@alchemy/aa-alchemy/react";
 import OnrampExample from "./unlimit/onramp";
+import { useAuth } from "./providers/authProvider";
 // import { SendUOButton } from "./SendUOButton";
 
 export const ProfileCard = () => {
-  const user = useUser();
-  const { client } = useSmartAccountClient({
-    type: "MultiOwnerModularAccount",
-  });
+  
+  // @ts-ignore
+  const { user, public_user } = useAuth();
+  
+  const address = public_user.wallet_address?.address
+  console.log(public_user.wallet_address)
+  
 
   return (
     <div className="flex flex-row rounded-lg ">
@@ -19,13 +23,13 @@ export const ProfileCard = () => {
           <div className="flex flex-col gap-2">
             <div>Account address</div>
             <div className="text-wrap rounded-lg p-3 ">
-              {client?.account.address}
+              {address}
             </div>
           </div>
           <div className="flex flex-col gap-2">
             <div>Email</div>
             <div className="text-wrap rounded-lg p-3 ">
-              {user?.email}
+              {public_user?.email}
             </div>
           </div>
         </div>
