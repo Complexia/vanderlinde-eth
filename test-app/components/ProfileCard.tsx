@@ -28,12 +28,6 @@ export const ProfileCard = () => {
             </div>
           </div>
           <div className="flex flex-col gap-2">
-            <div>Balances</div>
-            <div className="text-wrap rounded-lg p-3 ">
-              {balance}
-            </div>
-          </div>
-          <div className="flex flex-col gap-2">
             <div>Email</div>
             <div className="text-wrap rounded-lg p-3 ">
               {public_user?.email}

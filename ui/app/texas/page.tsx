@@ -12,7 +12,7 @@ const Texas = (context) => {
         <div className="flex-flex-col w-screen">
             
             <div className="">
-                <TexasComponent target_chain={target_chain} target_address={target_address} txn_data={txn_data} origin_url={origin_url} />
+                <TexasComponent txn_data={txn_data} origin_url={origin_url} target_chain={target_chain} target_address={target_address} />
             </div>
         </div>
     )

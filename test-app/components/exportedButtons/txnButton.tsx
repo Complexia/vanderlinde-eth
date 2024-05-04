@@ -31,7 +31,7 @@ const TxnButton = ({ name, target_chain, target_address, txn_data }: {
             }}>
                 <button className="btn btn-primary">
                     {/* {name} */}
-                    Purchase
+                    Purchasess
                 </button>
             </Link>
         </div>

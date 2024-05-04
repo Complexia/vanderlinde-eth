@@ -47,18 +47,18 @@ export default async function RootLayout({
       <body className="">
 
 
-        <AuthProvider accessToken={accessToken} user={user} public_user={data}>
+        {/* <AuthProvider accessToken={accessToken} user={user} public_user={data}> */}
           <AlchemyProviders>
-          <div className="navbar bg-neutral text-neutral-content">
-            <Navbar user={user}/>
-            </div>
+            {/* <div className="navbar bg-neutral text-neutral-content">
+              <Navbar user={user} />
+            </div> */}
 
             <main className=" flex flex-col items-center justify-center">
               {children}
             </main>
           </AlchemyProviders>
 
-        </AuthProvider>
+        {/* </AuthProvider> */}
 
 
 

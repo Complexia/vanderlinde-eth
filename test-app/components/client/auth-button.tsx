@@ -2,20 +2,20 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { jwtDecode } from "jwt-decode";
 
 const AuthButton = () => {
     // get origin url to redirect to
     let redirect_url = process.env.NEXT_PUBLIC_ORIGIN_URL;
     let auth_url = process.env.NEXT_PUBLIC_AUTH_URL;
     const client_id = "0fa3f656ae609be6598ecef02623d270";
-    const origin_id = "http://localhost:3000/user";
+    const origin_url = "http://localhost:3001/user";
     // generate message
     // let message = Math.random().toString(36).substring(7);
     // let nonce = Math.random().toString(36).substring(7);
 
     const [message, setMessage] = useState(null);
     const [nonce, setNonce] = useState(null);
-
 
     // This ensures the code runs only on the client-side
     useEffect(() => {
@@ -41,7 +41,7 @@ const AuthButton = () => {
                 const existingPolar = JSON.parse(polarData);
                 setMessage(existingPolar.message);
                 setNonce(existingPolar.nonce);
-                console.log("'polar' already exists in localStorage.");
+                console.log("'polar' already exists in localStorage.", existingPolar);
             }
         }
     }, []);
@@ -53,8 +53,8 @@ const AuthButton = () => {
             <Link href={{
                 pathname: auth_url,
                 query: {
-                    origin_id,
-                    client_id,
+                    message,
+                    nonce,
                 },
             }}>
                 <button className="btn btn-outline btn-secondary">
