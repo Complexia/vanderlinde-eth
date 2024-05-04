@@ -46,7 +46,7 @@ const AuthButton = () => {
     }, []);
 
     const redirect_polar = () => {
-        const url = `${auth_url}?message=${message}&nonce=${nonce}$client_id=${client_id}&origin_url=${origin_url}`;
+        const url = `${auth_url}?message=${message}&nonce=${nonce}&client_id=${client_id}&origin_url=${origin_url}`;
         window.open(url, '_blank');
     };
 

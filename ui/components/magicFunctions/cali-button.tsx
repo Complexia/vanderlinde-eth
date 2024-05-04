@@ -16,14 +16,14 @@ const CaliComponent = ({ client_id, origin_url, nonce, message }) => {
     const [error, setError] = useState('');
     const [project, setProject] = useState(null);
     const [token, setToken] = useState(null);
-    const vanderline = {
-        message: message,
-        nonce: nonce,
-        client_id: client_id,
-        origin_url: origin_url
-    };
-    const authDataString = JSON.stringify(vanderline);
-    localStorage.setItem('vanderline', authDataString);
+    // const vanderline = {
+    //     message: message,
+    //     nonce: nonce,
+    //     client_id: client_id,
+    //     origin_url: origin_url
+    // };
+    // const authDataString = JSON.stringify(vanderline);
+    // localStorage.setItem('vanderline', authDataString);
 
     // @ts-ignore
     const { public_user } = useAuth();
@@ -38,6 +38,7 @@ const CaliComponent = ({ client_id, origin_url, nonce, message }) => {
         const supabase = createClient();
 
         const fetchFromSupabase = async () => {
+            console.log("client_id", client_id)
             try {
                 const { data: resp, error } = await supabase
                     .from('project')
@@ -95,7 +96,7 @@ const CaliComponent = ({ client_id, origin_url, nonce, message }) => {
 
     return (
 
-        <div className="flex flex-col items-center justify-center " style={{ height: 'calc(100vh - 120px)' }}>
+        <div className="flex flex-col items-center justify-center mt-24" style={{ height: 'calc(100vh - 120px)' }}>
             {project && public_user ? (
                 <div className="flex flex-row gap-x-6">
                     <div className="card w-96 bg-primary text-primary-content">
@@ -110,7 +111,7 @@ const CaliComponent = ({ client_id, origin_url, nonce, message }) => {
                             <h2 className="card-title">User info</h2>
                             <p>Display name: {public_user.display_name}</p>
                             <p>Email: {public_user.email}</p>
-                            <p>Address: {public_user.wallet_address}</p>
+                            <p>Address: {public_user.wallet_address?.address}</p>
                             <p>Worldcoin Verified: {public_user.worldcoin}</p>
 
                             <div className="card-actions justify-end">
@@ -118,7 +119,7 @@ const CaliComponent = ({ client_id, origin_url, nonce, message }) => {
                                     <Link href={{
                                         pathname: origin_url,
                                         query: {
-                                            token: token,
+                                            jwt_token: token,
                                         },
                                     }}>
                                         <button className="btn btn-success">Authenticate client</button>

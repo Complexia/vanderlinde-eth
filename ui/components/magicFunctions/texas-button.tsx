@@ -167,7 +167,7 @@ const TexasComponent = ({ target_chain, target_address, txn_data, origin_url }) 
                                         <figure><img src="https://www.patriotsoftware.com/wp-content/uploads/2022/01/what-is-blockchain-1.jpg" alt="Shoes" /></figure>
                                         <div className="card-body">
                                             <h2 className="card-title">Cross-chain?</h2>
-                                            <p>Base Chain make it easier than ever!</p>
+                                            <p>Vanderlinde make it easier than ever!</p>
                                         </div>
                                     </div>
                                 }

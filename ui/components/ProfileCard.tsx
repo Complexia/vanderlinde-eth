@@ -27,46 +27,46 @@ export const ProfileCard = () => {
   // console.log("this is user ",user);
 
   // get vanderline from localStorage
-  let vanderlineString = localStorage.getItem('vanderline');
-  const vanderlineData = JSON.parse(vanderlineString);
-  const client_url = `${vanderlineData.origin_url}/=?jwt_token=${token}`;
-  console.log("this is vanderline ", vanderlineData);
+  // let vanderlineString = localStorage.getItem('vanderline');
+  // const vanderlineData = JSON.parse(vanderlineString);
+  // const client_url = `${vanderlineData.origin_url}/=?jwt_token=${token}`;
+  // console.log("this is vanderline ", vanderlineData);
 
-  const generateJwt = async () => {
-    const secret = vanderlineData.nonce;
-    if (typeof secret !== 'string') {
-      console.error('Invalid JWT secret. Secret must be a string.');
-      throw new TypeError('Invalid JWT secret. Secret must be a string.');
-    }
-    let payload = {
-      avatar_from_auth: public_user?.avatar_from_auth,
-      email: public_user?.email,
-      display_name: public_user?.display_name,
-      address: public_user?.wallet_address,
-      worldcoin: public_user?.worldcoin,
-    }
-    console.log('Auth payload:', payload)
-    let stuff = {
-      payload,
-      secret
-    }
-    let res = await fetch('/api/sign-jwt', {
-      method: 'POST',
-      body: JSON.stringify(stuff),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    let body = await res.json()
-    setToken(body)
-    console.log("body res", body)
-    const expiresIn = '12h';
-    // router.push(`${vanderlineData.origin_url}?jwt_token=${token}`);
-    const url = `${vanderlineData.origin_url}?jwt_token=${body}`;
-    // redirect(url);
-    window.open(url, '_blank');
-    window.close();
-  }
+  // const generateJwt = async () => {
+  //   const secret = vanderlineData.nonce;
+  //   if (typeof secret !== 'string') {
+  //     console.error('Invalid JWT secret. Secret must be a string.');
+  //     throw new TypeError('Invalid JWT secret. Secret must be a string.');
+  //   }
+  //   let payload = {
+  //     avatar_from_auth: public_user?.avatar_from_auth,
+  //     email: public_user?.email,
+  //     display_name: public_user?.display_name,
+  //     address: public_user?.wallet_address,
+  //     worldcoin: public_user?.worldcoin,
+  //   }
+  //   console.log('Auth payload:', payload)
+  //   let stuff = {
+  //     payload,
+  //     secret
+  //   }
+  //   let res = await fetch('/api/sign-jwt', {
+  //     method: 'POST',
+  //     body: JSON.stringify(stuff),
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   })
+  //   let body = await res.json()
+  //   setToken(body)
+  //   console.log("body res", body)
+  //   const expiresIn = '12h';
+  //   // router.push(`${vanderlineData.origin_url}?jwt_token=${token}`);
+  //   const url = `${vanderlineData.origin_url}?jwt_token=${body}`;
+  //   // redirect(url);
+  //   window.open(url, '_blank');
+  //   window.close();
+  // }
 
   // generate jwt_token
   // give client an option of redirect back into their application ?
@@ -157,7 +157,7 @@ export const ProfileCard = () => {
       </div>
 
       {/* <Link href={`${vanderlineData.origin_url}?jwt_token=${token}`}> */}
-      <button className="btn btn-outline btn-primary" onClick={generateJwt}>Authenticate Third Party</button>
+      {/* <button className="btn btn-outline btn-primary" onClick={generateJwt}>Authenticate Third Party</button> */}
       {/* </Link> */}
 
     </div>

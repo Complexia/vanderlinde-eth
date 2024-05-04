@@ -64,6 +64,16 @@ const Magic = () => {
         <div className="flex flex-col items-center justify-center space-y-6">
             <div className="flex flex-row flex-grow items-center justify-center space-x-6">
 
+                {!user && <div className="card   mt-44 h-full min-h-36" >
+                    
+                    <div className="card-body text-3xl font-bold text-center">
+                        <article className="prose"><h1>Welcome to the future of Web3.</h1>
+                        <h1> No more Metamask.</h1></article>
+                        
+                        </div>
+                        
+                    
+                    </div>}
 
                 {user && <div className="card  bg-base-300 shadow-xl h-full min-h-36" >
                     <div className="card-body">

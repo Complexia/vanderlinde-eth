@@ -11,14 +11,9 @@ import Header from "@/components/Header";
 import SucessModal from "@/components/client/sucess-modal";
 import ClientNavAuth from "@/components/client/client-nav-auth";
 import { jwtDecode } from "jwt-decode";
-<<<<<<< HEAD
-
-import TxnButton from "../../../ui/components/exportedButtons/txnButton"
-=======
 import TxnButton from "../../../ui/components/exportedButtons/txnButton";
 import Navbar from "@/components/navbar";
 import { useState } from "react";
->>>>>>> 577f6461bcbd7748b47642e7cd6492d2b4a74f68
 
 export default async function Index(context) {
     let response = context.searchParams["response"];
