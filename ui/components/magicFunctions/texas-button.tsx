@@ -53,13 +53,19 @@ const TexasComponent = ({ target_chain, target_address, txn_data, origin_url }) 
     const { public_user } = useAuth();
     const [txnResult, setTxnResult] = useState(null);
 
-    
+
     let target_address_sliced = target_address.slice(0, 4) + '..' + target_address.slice(-4);
     console.log("this is target_address_sliced", target_address)
     let result_target = null;
     const executeTxn = async () => {
         setSend(true);
         console.log("call CCIP");
+        // sort of hardcoded
+        if(target_chain !== "Base Sepolia") {
+            // Base sepolia Sender contract for CCIP
+            target_address = "0x608e2ba76cfd1e790a48a1479a2700d9f119acdd"
+            let destinationSelector = "16015286601757825753"
+        }
         const res = await fetch(`/api/executeTxn`, {
             method: 'POST',
             headers: {
@@ -174,7 +180,7 @@ const TexasComponent = ({ target_chain, target_address, txn_data, origin_url }) 
                                         <div className="card-body">
                                             {target_chain !== "Base Sepolia" && (
                                                 <div className="flex flex-col space-y-2">
-                                                <h2 className="card-title">From Base Sepolia to {target_chain}</h2>
+                                                <h2 className="card-title">Cross chain from Base Sepolia to {target_chain}</h2>
                                                 <p>Vanderlinde make it easier than ever!</p>
                                                 
                                                 </div>
