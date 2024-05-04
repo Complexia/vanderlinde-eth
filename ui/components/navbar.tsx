@@ -1,7 +1,7 @@
 "use client"
 
 import { createClient } from "@/utils/supabase/client";
-import AuthButton from "./AuthButton"
+import AuthButton from "./client/auth-button"
 import { useLogout } from "@alchemy/aa-alchemy/react";
 
 
@@ -10,16 +10,17 @@ import { useLogout } from "@alchemy/aa-alchemy/react";
 
 import Link from "next/link";
 import { LoginButtonGoogle } from "./auth/loginWithGoogle";
+import TxnButton2 from "./TxnButton2";
 
 
 const Navbar = ({ user }) => {
 
-    
+
 
     const signOut = async () => {
         const supabase = createClient();
         await supabase.auth.signOut();
-        
+
 
     };
 
@@ -53,8 +54,10 @@ const Navbar = ({ user }) => {
 
                         </div>
                     ) : (
-                        <LoginButtonGoogle />
-
+                        <div className="flex justify-center items-center space-x-4">
+                            <LoginButtonGoogle />
+                            <AuthButton />
+                        </div>
                     )}
 
 

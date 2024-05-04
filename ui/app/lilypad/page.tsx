@@ -32,6 +32,7 @@ const LilypadPage = (context) => {
         file_path = filePath;
         // This console log will confirm that Lilypad ran successfully.
         console.log(filePath);
+        
         // Serve file content directly
         // return (
         //     <div className="flex-flex-col w-screen">

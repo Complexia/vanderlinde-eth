@@ -42,9 +42,6 @@ export default async function RootLayout({
   //   { ssr: false }
   // );
 
-
-
-
   return (
     <html lang="en" data-theme={data ? data.theme : "synthwave"} className={GeistSans.className}>
       <body className="">
@@ -52,8 +49,9 @@ export default async function RootLayout({
 
         <AuthProvider accessToken={accessToken} user={user} public_user={data}>
           <AlchemyProviders>
+          <div className="navbar bg-neutral text-neutral-content">
             <Navbar user={user}/>
-
+            </div>
 
             <main className=" flex flex-col items-center justify-center">
               {children}
