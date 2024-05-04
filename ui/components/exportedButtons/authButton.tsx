@@ -2,21 +2,12 @@
 
 import Link from "next/link";
 
-
-
 // this button takes params and redirects to vanerlinde to make a txn
-const TxnButton = ({ name, target_chain, target_address, txn_data }: { 
-    name: string; 
-    target_chain: string; 
-    target_address: string; 
-    txn_data: string;
-}) => {
+const AuthButton = ({ name, client_id }) => {
     const vanderlinde_url = process.env.NEXT_PUBLIC_VANDERLINDE_URL;
     const origin_url = process.env.NEXT_PUBLIC_ORIGIN_URL;
-    const redirect_url = `${vanderlinde_url}/texas`;
-    // const target_chain = "ethereum";
-    // const target_address = "0x000000";
-    // const txn_data = "0x";
+    const redirect_url = `${vanderlinde_url}/cali`;
+   
     return (
         <div>
 
@@ -24,9 +15,8 @@ const TxnButton = ({ name, target_chain, target_address, txn_data }: {
                 pathname: redirect_url,
                 query: {
                     origin_url,
-                    target_chain,
-                    target_address,
-                    txn_data,
+                    client_id,
+                    
                 },
             }}>
                 <button className="btn btn-primary">
@@ -37,4 +27,4 @@ const TxnButton = ({ name, target_chain, target_address, txn_data }: {
     );
 }
 
-export default TxnButton;
+export default AuthButton;
