@@ -15,8 +15,8 @@ import TxnButton from "../../../ui/components/exportedButtons/txnButton";
 import Navbar from "@/components/navbar";
 import { useState } from "react";
 
-export default async function Index(context) {
-    let response = context.searchParams["response"];
+const User = async (context) => {
+    let response = context.searchParams["txnResult"];
     let token = context.searchParams["jwt_token"];
     let public_users = null;
     console.log("this is token ", token);
@@ -35,7 +35,7 @@ export default async function Index(context) {
     } else {
         console.log("No valid JWT available.");
     }
-    let openModal = false;
+    let openModal = true;
 
     // save user to localStorage
 
@@ -290,6 +290,7 @@ export default async function Index(context) {
     const chain = "baseSepolia";
 
     const target_chain = "Base Sepolia";
+    const polygon_chain = "Polygon Amoy";
 
     // const cd = encodeFunctionData({
     //     abi,
@@ -300,9 +301,11 @@ export default async function Index(context) {
 
 
     const isSupabaseConnected = canInitSupabaseClient();
+    console.log("resppp", response)
 
     return (
         <div>
+            hello
             <div className="navbar bg-neutral text-neutral-content">
                 <Navbar user={public_users} />
             </div>
@@ -311,9 +314,14 @@ export default async function Index(context) {
                     <main className="flex-1 flex flex-col gap-6">
                         <h1 className="mb-5 text-5xl font-bold">Shop With Us</h1>
                         <div className="divider"></div>
+                        
 
                         {response && (
-                            <SucessModal response={response} />
+                            <div role="alert" className="alert alert-success">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                <span>Your purchase has been confirmed!</span>
+                                <span>{response}</span>
+                            </div>
                         )}
 
                         <div className="carousel rounded-box">
@@ -338,7 +346,7 @@ export default async function Index(context) {
                                         <div className="badge badge-secondary">0.33 ETH</div>
                                         <p>If a dog chews shoes whose shoes does he choose?</p>
                                         <div className="card-actions justify-end">
-                                            <TxnButton name={contract_method} target_address={user_address} target_chain={target_chain} txn_data="Lemon" />
+                                            <TxnButton name={contract_method} target_address={user_address} target_chain={polygon_chain} txn_data="Lemon" />
                                         </div>
                                     </div>
                                 </div>
@@ -433,3 +441,5 @@ export default async function Index(context) {
         </div>
     );
 }
+
+export default User;

@@ -8,6 +8,7 @@ const Texas = (context) => {
     let target_chain = context.searchParams["target_chain"]
     let target_address = context.searchParams["target_address"]
     let txn_data = context.searchParams["txn_data"]
+    
     return (
         <div className="flex-flex-col w-screen">
             

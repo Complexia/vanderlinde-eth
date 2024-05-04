@@ -6,15 +6,14 @@ import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const SucessModal = (response) => {
-    const [modal, setModal] = useState(null);
+    const [modal, setModal] = useState(true);
 
     useEffect(() => {
+
         setModal(true)
     }, []);
 
-    // const openModal = () => {
-    //     setModal(true);
-    // };
+
 
     const closeModal = () => {
         console.log("this is model:", modal);
@@ -25,18 +24,23 @@ const SucessModal = (response) => {
     if (!modal) {
         return null; // Don't render anything if modal is not active
     }
-
+    
     return (
-        <div role="alert" className="alert alert-success">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-info shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            <div>
-                <h3 className="font-bold">Contract Response!</h3>
-                <div className="text-xs">{response.response}</div>
-            </div>
-            <div>
-                <button className="btn btn-sm" onClick={closeModal}>Close</button>
-                {/* <button className="btn btn-sm btn-primary">Accept</button> */}
-            </div>
+        <div>
+            {/* @ts-ignore */}
+            <button className="btn" onClick={() => document.getElementById('my_modal_5').showModal()}>open modal</button>
+            <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+                <div className="modal-box">
+                    <h3 className="font-bold text-lg">Contract hash</h3>
+                    <p className="py-4">{response}</p>
+                    <div className="modal-action">
+                        <form method="dialog">
+                            {/* if there is a button in form, it will close the modal */}
+                            <button className="btn">Close</button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
         </div>
     );
 }
