@@ -8,7 +8,7 @@ import { useAuth } from '../providers/authProvider';
 import { IconSpinner } from '@/registry/new-york/ui/icons';
 import { LoginButtonGoogle } from '../auth/loginWithGoogle';
 import { useSendUserOperation, useSmartAccountClient } from '@alchemy/aa-alchemy/react';
-import { Address } from 'viem';
+import { Address, encodeFunctionData } from 'viem';
 import { baseSepolia } from "viem/chains";
 
 
@@ -16,24 +16,24 @@ import { baseSepolia } from "viem/chains";
 
 const TexasComponent = ({ target_chain, target_address, txn_data, origin_url }) => {
 
-    const { client } = useSmartAccountClient({
-        type: "MultiOwnerModularAccount",
-        gasManagerConfig: {
-            policyId: process.env.NEXT_PUBLIC_ALCHEMY_GAS_MANAGER_POLICY_ID!,
-        },
-        opts: {
-            txMaxRetries: 20,
-        },
-    });
+    // const { client } = useSmartAccountClient({
+    //     type: "MultiOwnerModularAccount",
+    //     gasManagerConfig: {
+    //         policyId: process.env.NEXT_PUBLIC_ALCHEMY_GAS_MANAGER_POLICY_ID!,
+    //     },
+    //     opts: {
+    //         txMaxRetries: 20,
+    //     },
+    // });
 
 
-    const {
-        sendUserOperation,
-        sendUserOperationResult,
-        isSendingUserOperation,
-        error: isSendUserOperationError,
-        // @ts-ignore
-    } = useSendUserOperation({ client, waitForTxn: true });
+    // const {
+    //     sendUserOperation,
+    //     sendUserOperationResult,
+    //     isSendingUserOperation,
+    //     error: isSendUserOperationError,
+    //     // @ts-ignore
+    // } = useSendUserOperation({ client, waitForTxn: true });
 
 
     const [address] = useState<Address>(
@@ -42,28 +42,35 @@ const TexasComponent = ({ target_chain, target_address, txn_data, origin_url }) 
 
     const [error, setError] = useState('');
 
-    const execute = async () => {
-        console.log("executing")
-        // @ts-ignore
-        sendUserOperation({
-            uo: {
-                target: address,
-                data: "0x",
-            },
-        });
-    }
+    
 
-
+    
     // @ts-ignore
     const { public_user } = useAuth();
 
     let target_address_sliced = target_address.slice(0, 4) + '..' + target_address.slice(-4);
 
+    const executeTxn = async () => {
+        const res = await fetch (`/api/executeTxn`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                target_chain: target_chain,
+                target_address: target_address,
+                txn_data: txn_data,
+            }),
+        })
+        const data = await res.json();
+        console.log(data)
+    }
+
 
     return (
 
         <div className="flex flex-col items-center justify-center " style={{ height: 'calc(100vh - 120px)' }}>
-            {public_user && client ? (
+            {public_user  ? (
                 <div className="flex flex-row gap-x-6">
                     <Card className="w-96">
                         <CardHeader>
@@ -82,18 +89,10 @@ const TexasComponent = ({ target_chain, target_address, txn_data, origin_url }) 
 
                                     <button
                                         className="w-full transform rounded-lg bg-[#363FF9] p-3 font-semibold text-[#FBFDFF] transition duration-500 ease-in-out hover:scale-105 disabled:bg-[#C0D4FF] disabled:hover:scale-100 dark:disabled:bg-[#4252C5]"
-                                        onClick={async () =>
-                                            // @ts-ignore
-                                            sendUserOperation({
-                                                uo: {
-                                                    target: address,
-                                                    data: "0x",
-                                                },
-                                            })
-                                        }
-                                        disabled={isSendingUserOperation}
+                                        onClick={() => executeTxn()}
+                                        
                                     >
-                                        <div className="flex flex-row items-center justify-center gap-3">
+                                        {/* <div className="flex flex-row items-center justify-center gap-3">
                                             {isSendingUserOperation && (
                                                 // Loading spinner
                                                 <div
@@ -106,7 +105,8 @@ const TexasComponent = ({ target_chain, target_address, txn_data, origin_url }) 
                                                 : isSendUserOperationError
                                                     ? "An error occurred. Try again!"
                                                     : "Send a test transaction"}
-                                        </div>
+                                        </div> */}
+                                        Send Transaction
                                     </button>
                                     <button className="btn btn-secondary">Cancel</button>
 
@@ -121,7 +121,7 @@ const TexasComponent = ({ target_chain, target_address, txn_data, origin_url }) 
                             <CardTitle>Transaction details</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            {sendUserOperationResult && (
+                            {/* {sendUserOperationResult && (
                                 <div className="flex flex-col gap-y-4">
                                     <p>Txn status: done</p>
                                     <a
@@ -135,7 +135,7 @@ const TexasComponent = ({ target_chain, target_address, txn_data, origin_url }) 
 
                                 </div>
 
-                            )}
+                            )} */}
 
                         </CardContent>
                     </Card>

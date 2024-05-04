@@ -17,43 +17,23 @@ import OnrampExample from "./unlimit/onramp";
 
 const Magic = () => {
 
-    const signOut = async () => {
-        const supabase = createClient();
-        await supabase.auth.signOut();
-        logout();
-
-    };
 
     // @ts-ignore
     const { user, public_user } = useAuth();
 
 
-    const { client } = useSmartAccountClient({
-        type: "MultiOwnerModularAccount",
-    });
+    
 
-    console.log(client)
+    
 
-    const { logout } = useLogout({
-        onSuccess: () => {
-            // [optional] Do something after the user has been logged out
-        },
-        onError: (error) => {
-            // [optional] Do something with the error
-        },
-        // [optional] ...additional mutationArgs
-    });
+    
 
 
 
     return (
         <div className="flex flex-col items-center justify-center space-y-6">
             <div className="flex flex-row flex-grow items-center justify-center space-x-6">
-                <div className="card  bg-base-300 shadow-xl h-full min-h-36">
-                    <div className="card-body">
-                        <SupabaseComponent />
-                    </div>
-                </div>
+                
 
                 {user && <div className="card  bg-base-300 shadow-xl h-full min-h-36" >
                     <div className="card-body">
@@ -73,7 +53,6 @@ const Magic = () => {
 
             </div>
             
-            {user && <button className="btn btn-primary w-full" onClick={() => signOut()}>Sign out</button>}
 
 
         </div>

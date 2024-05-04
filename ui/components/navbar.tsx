@@ -1,13 +1,28 @@
+"use client"
+
+import { createClient } from "@/utils/supabase/client";
 import AuthButton from "./AuthButton"
+import { useLogout } from "@alchemy/aa-alchemy/react";
 
 
 
 
 
 import Link from "next/link";
+import { LoginButtonGoogle } from "./auth/loginWithGoogle";
 
 
 const Navbar = ({ user }) => {
+
+    
+
+    const signOut = async () => {
+        const supabase = createClient();
+        await supabase.auth.signOut();
+        
+
+    };
+
 
     return (
 
@@ -30,11 +45,15 @@ const Navbar = ({ user }) => {
                                     <button className="btn btn-primary">Register Project</button>
                                 </Link>
 
+
+                            </div>
+                            <div>
+                                {user && <button className="btn btn-primary w-full" onClick={() => signOut()}>Sign out</button>}
                             </div>
 
                         </div>
                     ) : (
-                        <div>bob</div>
+                        <LoginButtonGoogle />
 
                     )}
 
