@@ -1,7 +1,7 @@
 "use client"
 
 import { createClient } from "@/utils/supabase/client";
-import AuthButton from "./client/auth-button"
+import AuthButton from "../../ui/components/client/auth-button"
 import { useLogout } from "@alchemy/aa-alchemy/react";
 
 
@@ -55,7 +55,7 @@ const Navbar = ({ user }) => {
                         </div>
                     ) : (
                         <div className="flex justify-center items-center space-x-4">
-                            <LoginButtonGoogle />
+                            {/* <LoginButtonGoogle /> */}
                             <AuthButton />
                         </div>
                     )}

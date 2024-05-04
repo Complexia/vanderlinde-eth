@@ -11,7 +11,7 @@ import Header from "@/components/Header";
 import SucessModal from "@/components/client/sucess-modal";
 import ClientNavAuth from "@/components/client/client-nav-auth";
 import { jwtDecode } from "jwt-decode";
-import TxnButton from "@/components/exportedButtons/txnButton";
+import TxnButton from "../../../ui/components/exportedButtons/txnButton";
 
 export default async function Index(context) {
     let response = context.searchParams["response"];
