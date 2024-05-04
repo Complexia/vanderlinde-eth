@@ -1,7 +1,7 @@
 "use client"
 
 import { createClient } from "@/utils/supabase/client";
-import AuthButton from "./client/auth-button"
+import AuthButton from "../../ui/components/client/auth-button"
 import { useLogout } from "@alchemy/aa-alchemy/react";
 
 
@@ -11,17 +11,26 @@ import { useLogout } from "@alchemy/aa-alchemy/react";
 import Link from "next/link";
 import { LoginButtonGoogle } from "./auth/loginWithGoogle";
 import TxnButton2 from "./TxnButton2";
+import { useEffect, useState } from "react";
 
 
 const Navbar = ({ user }) => {
+    const [publicUser, setPublicUser] = useState(null);
+    console.log("this is client-user", user);
+    if (!user == null) {
+        localStorage.setItem('user', JSON.stringify(user));
+    };
 
-
+    useEffect(() => {
+        setPublicUser(user);
+    }, [user]);
 
     const signOut = async () => {
-        const supabase = createClient();
-        await supabase.auth.signOut();
-
-
+        localStorage.removeItem('user');
+        localStorage.removeItem('polar');
+        setPublicUser(null);
+        // const supabase = createClient();
+        // await supabase.auth.signOut();
     };
 
 
@@ -39,7 +48,7 @@ const Navbar = ({ user }) => {
 
 
 
-                    {user ? (
+                    {publicUser ? (
                         <div className="flex flex-row space-x-4">
                             <div>
                                 <Link href="/register">
@@ -49,13 +58,13 @@ const Navbar = ({ user }) => {
 
                             </div>
                             <div>
-                                {user && <button className="btn btn-primary w-full" onClick={() => signOut()}>Sign out</button>}
+                                {publicUser && <button className="btn btn-primary w-full" onClick={() => signOut()}>Sign out</button>}
                             </div>
 
                         </div>
                     ) : (
                         <div className="flex justify-center items-center space-x-4">
-                            <LoginButtonGoogle />
+                            {/* <LoginButtonGoogle /> */}
                             <AuthButton />
                         </div>
                     )}

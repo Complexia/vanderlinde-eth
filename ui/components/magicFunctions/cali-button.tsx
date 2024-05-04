@@ -10,12 +10,20 @@ import { LoginButtonGoogle } from '../auth/loginWithGoogle';
 
 
 
-const CaliComponent = ({ client_id, origin_url }) => {
+const CaliComponent = ({ client_id, origin_url, nonce, message }) => {
     console.log(client_id, origin_url)
-
+    console.log("this is nonce ", nonce);
     const [error, setError] = useState('');
     const [project, setProject] = useState(null);
     const [token, setToken] = useState(null);
+    const vanderline = {
+        message: message,
+        nonce: nonce,
+        client_id: client_id,
+        origin_url: origin_url
+    };
+    const authDataString = JSON.stringify(vanderline);
+    localStorage.setItem('vanderline', authDataString);
 
     // @ts-ignore
     const { public_user } = useAuth();
@@ -53,30 +61,22 @@ const CaliComponent = ({ client_id, origin_url }) => {
     }, []);
 
     const generateJwt = async () => {
-
-
-        
         const secret = project?.client_secret;
-
         if (typeof secret !== 'string') {
             console.error('Invalid JWT secret. Secret must be a string.');
             throw new TypeError('Invalid JWT secret. Secret must be a string.');
         }
-
         let payload = {
             email: public_user?.email,
             display_name: public_user?.display_name,
             address: public_user?.wallet_address,
             worldcoin: public_user?.worldcoin,
         }
-
         console.log('Auth payload:', payload)
-
         let stuff = {
-            payload, 
+            payload,
             secret
         }
-
         let res = await fetch('/api/sign-jwt', {
             method: 'POST',
             body: JSON.stringify(stuff),
@@ -89,20 +89,9 @@ const CaliComponent = ({ client_id, origin_url }) => {
         setToken(body)
         console.log("body res", body)
         console.log("token ", token)
-        
 
         const expiresIn = '12h';
-
-    
-        
-
     }
-
-    
-
-
-
-
 
     return (
 

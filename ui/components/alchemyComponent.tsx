@@ -117,7 +117,7 @@ const AlchemyComponent = () => {
             {client ? (
                 <div className="flex flex-col items-center justify-center space-y-4">
                     <ProfileCard />
-                    {public_user?.worldcoin && <h1 className="text-primary font-bold">World ID verified! Gas is on the house</h1>}
+                    {/* {public_user?.worldcoin && <h1 className="text-primary font-bold">World ID verified! Gas is on the house</h1>} */}
                 </div>
             ) : (
                 <IconSpinner />
