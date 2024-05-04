@@ -5,12 +5,21 @@ import dotenv from "dotenv";
 import { createModularAccountAlchemyClient } from "@alchemy/aa-alchemy";
 import { Hex, encodeFunctionData } from "viem";
 import { NextResponse } from "next/server";
+import { createClient } from "@/utils/supabase/server";
 
 
 
 
 export async function POST(req: Request) {
   dotenv.config();
+
+  const supabase = createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  const { data } = await supabase.from('public_users').select('*').eq('id', user?.id).single()
+  const worldcoin = data.worldcoin;
 
   const body = await req.json();
 
@@ -26,9 +35,12 @@ export async function POST(req: Request) {
 
   const contractAddr: Hex = body.target_address;
 
- 
-    // modular account client
-    const client = await createModularAccountAlchemyClient({
+
+  // modular account client
+  let client = null;
+
+  if (worldcoin) {
+    client = await createModularAccountAlchemyClient({
       apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY!,
       chain: baseSepolia,
       signer,
@@ -37,40 +49,51 @@ export async function POST(req: Request) {
       },
     });
 
+  }
+  else {
+    client = await createModularAccountAlchemyClient({
+      apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY!,
+      chain: baseSepolia,
+      signer,
 
-    // batch txns
-    // const uos = [1, 2, 3, 4, 5, 6, 7].map((x) => {
-    //   return {
-    //     target: contractAddr,
-    //     data: encodeFunctionData({
-    //       abi,
-    //       functionName: "changeX",
-    //       args: [x],
-    //     }),
-    //   };
-    // });
-
-    const uos = {
-      target: contractAddr,
-      data: body.txn_data
-    };
-    
-
-    // @ts-ignore
-    const result = await client.sendUserOperation({
-      uo: uos,
     });
-    const txHash = await client.waitForUserOperationTransaction(result);
-    console.log(txHash);
 
-    // const x = await client.readContract({
-    //   abi,
-    //   address: contractAddr,
-    //   functionName: "x",
-    // });
+  }
 
-    // console.log(x);
-  
+
+  // batch txns
+  // const uos = [1, 2, 3, 4, 5, 6, 7].map((x) => {
+  //   return {
+  //     target: contractAddr,
+  //     data: encodeFunctionData({
+  //       abi,
+  //       functionName: "changeX",
+  //       args: [x],
+  //     }),
+  //   };
+  // });
+
+  const uos = {
+    target: contractAddr,
+    data: body.txn_data
+  };
+
+
+  // @ts-ignore
+  const result = await client.sendUserOperation({
+    uo: uos,
+  });
+  const txHash = await client.waitForUserOperationTransaction(result);
+  console.log(txHash);
+
+  // const x = await client.readContract({
+  //   abi,
+  //   address: contractAddr,
+  //   functionName: "x",
+  // });
+
+  // console.log(x);
+
 
   return NextResponse.json(txHash);
 
