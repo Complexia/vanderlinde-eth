@@ -1,7 +1,7 @@
 "use client";
 
 import { useSmartAccountClient, useUser } from "@alchemy/aa-alchemy/react";
-import OnrampExample from "./unlimit/onramp";
+import Onramp from "./unlimit/onramp";
 import { useAuth } from "./providers/authProvider";
 import { Web3 } from "web3";
 import { useEffect, useState } from "react";
@@ -159,7 +159,7 @@ export const ProfileCard = () => {
         <div className="stat-figure text-secondary">
         </div>
         <div className="stat-title mb-2">Fund your wallet</div>
-        <OnrampExample />
+        <Onramp />
         
       </div>
 

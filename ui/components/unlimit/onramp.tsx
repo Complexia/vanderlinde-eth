@@ -12,7 +12,7 @@ import { useAuth } from "../providers/authProvider";
 import { useSmartAccountClient } from "@alchemy/aa-alchemy/react";
 
 
-const OnrampExample: React.FC = () => {
+const Onramp: React.FC = () => {
   const [showIframe, setShowIframe] = useState(false);
   const overlayInstanceSDK = useRef<GateFiSDK | null>(null);
   const embedInstanceSDK = useRef<GateFiSDK | null>(null);
@@ -180,4 +180,4 @@ const OnrampExample: React.FC = () => {
   
 };
 
-export default OnrampExample;
+export default Onramp;
