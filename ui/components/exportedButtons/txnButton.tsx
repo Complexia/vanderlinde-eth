@@ -202,7 +202,7 @@ const TxnButton = ({ name, target_chain, target_address, txn_data }: {
             const txn = encodeFunctionData({
                 abi,
                 functionName: "sendMessage",
-                args: [16015286601757825753n, "0x269a639D9A8c6c300250BcC4D561EA9d245A5690", txn_data]
+                args: [16015286601757825753n, "0x608e2ba76cfd1e790a48a1479a2700d9f119acdd", txn_data]
             });
             const target_address = "0x269a639D9A8c6c300250BcC4D561EA9d245A5690";
             const redirect_url = `http://localhost:3000/texas?origin_url=${origin_url}&txn_data=${txn}&target_chain=${target_chain}&target_address=${target_address}`;

@@ -12,6 +12,7 @@ import { privateKeyToAccount } from "viem/accounts";
 import { Hex } from "viem";
 import { createModularAccountAlchemyClient } from "@alchemy/aa-alchemy";
 import { IconSpinner } from "@/registry/new-york/ui/icons";
+import OnrampExample from "./unlimit/onramp";
 
 
 
@@ -117,6 +118,7 @@ const AlchemyComponent = () => {
             {client ? (
                 <div className="flex flex-col items-center justify-center space-y-4">
                     <ProfileCard />
+                    
                     {/* {public_user?.worldcoin && <h1 className="text-primary font-bold">World ID verified! Gas is on the house</h1>} */}
                 </div>
             ) : (

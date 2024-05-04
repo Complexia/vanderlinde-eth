@@ -346,7 +346,7 @@ const User = async (context) => {
                                         <div className="badge badge-secondary">0.33 ETH</div>
                                         <p>If a dog chews shoes whose shoes does he choose?</p>
                                         <div className="card-actions justify-end">
-                                            <TxnButton name={contract_method} target_address={user_address} target_chain={polygon_chain} txn_data="Lemon" />
+                                            <TxnButton name={contract_method} target_address="0x608e2ba76cfd1e790a48a1479a2700d9f119acdd" target_chain={polygon_chain} txn_data="Lemon" />
                                         </div>
                                     </div>
                                 </div>

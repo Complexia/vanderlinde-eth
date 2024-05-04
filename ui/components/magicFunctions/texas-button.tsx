@@ -53,7 +53,9 @@ const TexasComponent = ({ target_chain, target_address, txn_data, origin_url }) 
     const { public_user } = useAuth();
     const [txnResult, setTxnResult] = useState(null);
 
+    
     let target_address_sliced = target_address.slice(0, 4) + '..' + target_address.slice(-4);
+    console.log("this is target_address_sliced", target_address)
     let result_target = null;
     const executeTxn = async () => {
         setSend(true);

@@ -155,6 +155,13 @@ export const ProfileCard = () => {
         <div className="stat-value text-secondary">{public_user?.email}</div>
         <div className="stat-desc">{public_user?.display_name}</div>
       </div>
+      <div className="stat">
+        <div className="stat-figure text-secondary">
+        </div>
+        <div className="stat-title mb-2">Fund your wallet</div>
+        <OnrampExample />
+        
+      </div>
 
       {/* <Link href={`${vanderlineData.origin_url}?jwt_token=${token}`}> */}
       {/* <button className="btn btn-outline btn-primary" onClick={generateJwt}>Authenticate Third Party</button> */}

@@ -131,12 +131,12 @@ const OnrampExample: React.FC = () => {
         
         {user && (
         <>
-        <div>
+        <div className="flex w-full">
           
         
           <button
             onClick={handleOnClick}
-            className="btn btn-primary w-full"
+            className="btn btn-outline btn-secondary w-full"
             onMouseOver={(e) => (e.currentTarget.style.opacity = "0.7")}
             onMouseOut={(e) => (e.currentTarget.style.opacity = "1")}
           >
