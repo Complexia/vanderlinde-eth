@@ -178,6 +178,14 @@ const TexasComponent = ({ target_chain, target_address, txn_data, origin_url }) 
                                                 </div>
 
                                             )}
+                                            {target_chain === "Base Sepolia" && (
+                                                <div className="flex flex-col space-y-2">
+                                                <h2 className="card-title">Execute transaction.</h2>
+                                                <p>Vanderlinde make it easier than ever!</p>
+                                                
+                                                </div>
+
+                                            )}
                                             
                                         </div>
                                     </div>
